@@ -1,13 +1,15 @@
-.img {
-    align-items: center;
-}
+
 img.alineadoTextoImagenArriba{
-    vertical-align: text-top;  
-  }
-  img.alineadoTextoImagenCentro{
-    vertical-align: middle;
-    /* Ojo vertical-align: text-middle no existe*/
-  }
-  img.alineadoTextoImagenAbajo{
-    vertical-align: text-bottom;  
-  }
+  vertical-align: text-top;  
+}
+img.alineadoTextoImagenCentro{
+  vertical-align: middle;
+}
+img.alineadoTextoImagenAbajo{
+  vertical-align: text-bottom;  
+}
+
+.container{
+  background-color: #fff;
+  box-shadow: none;
+}
