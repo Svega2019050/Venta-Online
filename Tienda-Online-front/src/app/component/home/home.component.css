@@ -1,0 +1,13 @@
+.img {
+    align-items: center;
+}
+img.alineadoTextoImagenArriba{
+    vertical-align: text-top;  
+  }
+  img.alineadoTextoImagenCentro{
+    vertical-align: middle;
+    /* Ojo vertical-align: text-middle no existe*/
+  }
+  img.alineadoTextoImagenAbajo{
+    vertical-align: text-bottom;  
+  }
