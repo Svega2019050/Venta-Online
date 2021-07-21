@@ -2,7 +2,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-
+var userRoutes = require('./routes/user.route');
 
 var app = express();
 
@@ -19,5 +19,6 @@ app.use((req, res, next) => {
 
 
 
+app.use('/api', userRoutes);
 
 module.exports = app;

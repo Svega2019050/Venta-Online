@@ -1,15 +1,1 @@
 
-img.alineadoTextoImagenArriba{
-  vertical-align: text-top;  
-}
-img.alineadoTextoImagenCentro{
-  vertical-align: middle;
-}
-img.alineadoTextoImagenAbajo{
-  vertical-align: text-bottom;  
-}
-
-.container{
-  background-color: #fff;
-  box-shadow: none;
-}

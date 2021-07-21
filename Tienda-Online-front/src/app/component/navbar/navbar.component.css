@@ -1,92 +1,46 @@
-
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-
-/* icon*/
-.fa-2x {
-  font-size: 2em;
-}
-.fas{
-  position: relative;
-  display: table-cell;
-  width: 5rem;
-  height: 3.5rem;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 1.8rem;
-}
-
-/* nav bar menu*/
-
-
-.main-menu {
-  background:#212121;
-  border-right:1px solid #e5e5e5;
-  position:absolute;
-  top:0;
-  bottom:0;
-  height:100%;
-  left:0;
-  width:5rem;
-  overflow:hidden;
-}
-
-.main-menu>ul {
-  margin: 1rem 0;
-}
-
-.main-menu li {
-  position:relative;
-  display:block;
-  width: 20rem;
-}
-
-.main-menu li>a {
-  position:relative;
-  display:table;
-  border-collapse:collapse;
-  border-spacing:0;
-  color:#999;
-  font-family: arial;
+.navbar-collapse {
+  flex-grow: 0;
   font-size: 1rem;
-  text-decoration:none;
 }
 
+.navbar-brand{
+  font-family: 'Merienda One', cursive;
+  font-size: 5vh;
+}
+.img{
 
-/*azul*/
-.main-menu .nav-text {
-  position:relative;
-  display:table-cell;
-  vertical-align:middle;
-  width: 15rem;
-  font-family: 'Titillium Web', sans-serif;
-  color: #fff;
+  width: 10vh;
+  height: 10vh;
+  display: inline-block;
+  background-position: 50%;
+  background-size: cover;
+}
+.text-footer{
+  padding: 1rem;
+  align-items: center;
+  color: aliceblue;
+
 }
 
-.main-menu:hover,nav.main-menu.expanded {
-  min-width: 20rem;
-  overflow:visible;
+.text-center{
+  display:block;
+  text-align: right;
 }
 
-.main-menu>ul.logout {
-  position:absolute;
-  left:0;
-  bottom:0;
+p{
+  text-align: right;
 }
 
-
-a:hover,a:focus {
-  text-decoration:none;
+footer{
+  align-items: center;
 }
 
-
-nav ul,nav li {
-  outline:0;
-  margin:0;
-  padding:0;
+.icon-footer{
+  text-align: center;
 }
 
-.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
-color:#fff;
-background-color:#5fa2db;
+h2 i{
+  display: inline-block;
+  width: 5rem;
+  font-size: 2.5rem;
 }
-

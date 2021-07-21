@@ -1,63 +1,66 @@
-<nav class="main-menu">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark" >
+    <div class="container-fluid">
+      <a class="navbar-brand " href="#"><img src="../../../assets/img/Icon.png " alt="Icon" class=" alineadoTextoImagenCentro img"> Hunter Shop</a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <ul>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActivate="active">
-                <i class="fas fa-home fa-2x"></i>
-                <span class="nav-text">
-                    Home
-                </span>
-            </a>
-        </li>
-        
-        <li class="has-subnav">
-            <a class="nav-link" aria-current="page" routerLink="/register" routerLinkActivate="active">
-                <i class="fas fa-laptop fa-2x"></i>
-                <span class="nav-text">
-                    Registrarse  
-                </span>
-            </a>
-            
-        </li>
-        <li class="has-subnav">
-            <a class="nav-link" aria-current="page" routerLink="/login" routerLinkActivate="active">
-                <i class="fas fa-user fa-2x"></i>
-                <span class="nav-text">
-                    Login
-                </span>
-            </a>
-            
-        </li>
-        <li class="has-subnav">
-            <a class="nav-link" aria-current="page" routerLink="/" routerLinkActivate="active">
-                <i class="fas fa-shopping-cart fa-2x"></i>
-                <span class="nav-text">
-                    Productos
-                </span>
-            </a>
-            
-        </li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li class="has-subnav">
-            <a class="nav-link" aria-current="page" routerLink="/" routerLinkActivate="active">
-                <i class="fas fa-address-card fa-2x"></i>         
-                <span class="nav-text">
-                    Nosotros
-                </span>
-            </a>
-            
-        </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active"><i class="fas fa-home"></i> Inicio</a>
+          </li>
 
-    </ul>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/register" routerLinkActive="active"><i class="fas fa-address-book"></i> Registrarse</a>
+          </li>
 
-    <ul class="logout">
-        <li>
-           <a href="#">
-                 <i class="fas fa-power-off fa-2x"></i>
-                <span class="nav-text">
-                    Cerrar sesión
-                </span>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fas fa-user-alt"></i> Iniciar sesión</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
             </a>
-        </li>  
-    </ul>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <!-- 
+            <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> 
+        -->
+
+      </div>
+    </div>
+
 </nav>
+
+
+<!--Footer-->
+<footer class="fixed-bottom  navbar-dark bg-dark">
+  <div class="container-fluid text-footer row">
+    <div class="col">
+      <a class="navbar-brand" href="/">Hunter Shop</a>
+    </div>
+    <div class="col">
+      <h2 class="icon-footer"><i class="fab fa-facebook"></i><i class="fas fa-envelope"></i><i class="fab fa-invision"></i></h2>
+    </div>   
+    <div class="col">
+      <p>Copyright © 2021 Hunter Shop todos los derechos reservados.</p>
+    </div>   
+  </div>
+
+</footer>
+
