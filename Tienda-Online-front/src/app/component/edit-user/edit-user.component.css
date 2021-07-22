@@ -2,11 +2,11 @@
 .img{
     border: 10px solid #46E097;
     height: 17.5rem !important;
-    width: 15%;
-
-    
+    width: 15%;    
 }
-
+.email{
+    text-transform: lowercase;
+}
 .button-edit{
     margin-top: 1rem;
     width: 100%;

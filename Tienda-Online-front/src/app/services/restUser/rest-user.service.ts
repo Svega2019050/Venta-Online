@@ -3,17 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONNECTION } from '../global.service';
 import { map } from 'rxjs/operators';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class RestUserService {
   public uri:string;
   public user;
   public token;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
     this.uri = CONNECTION.URI;
   }
 
@@ -23,7 +22,7 @@ export class RestUserService {
     })
   };
 
- 
+
   public httpOptionsAuth = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -57,24 +56,20 @@ export class RestUserService {
     return this.token;
   }
 
-  /* Guardar Usuario */
+  /* User */
   saveUser(user){
     let params = JSON.stringify(user);
-    return this.http.post(this.uri + 'saveUser',params,this.httpOptions)
+    return this.http.post(this.uri+'saveUser', params, this.httpOptions)
       .pipe(map(this.extractData));
   }
 
-  /* Eliminar User */
-  deleteUser(idUser, password){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.getToken()
-    });
-    return this.http.put(this.uri + 'removeUser/' + idUser,{password: password},{headers:headers}).
-    pipe(map(this.extractData));
-  }
 
-  /* Actualizar User */
+  login(user, token){
+    user.gettoken = token;
+    let params = JSON.stringify(user); //volver un objeto JS a JSON
+    return this.http.post(this.uri+ 'login', params, this.httpOptions)
+    .pipe(map(this.extractData))
+  }
 
   updateUser(userToUpdate){
     let params = JSON.stringify(userToUpdate);
@@ -82,18 +77,20 @@ export class RestUserService {
       'Content-Type': 'application/json',
       'Authorization': this.getToken()
     });
-    return this.http.put(this.uri + 'updateUser/'+userToUpdate._id,params, {headers:headers}).pipe(map(this.extractData));
-  }
-
-  /* Login */
-  login(user, token){
-    user.gettoken = token;
-    let params = JSON.stringify(user);
-    return this.http.post(this.uri+ 'login', params, this.httpOptions)
+    return this.http.put(this.uri+'updateUser/'+userToUpdate._id, params, {headers:headers})
     .pipe(map(this.extractData))
   }
 
-  /* Administrador */
+  deleteUser(idUser, password){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.put(this.uri+'removeUser/'+idUser, {password: password}, {headers:headers})
+    .pipe(map(this.extractData))
+  }
+
+  /* Admin */
   saverUserByAdmin(user, idAdmin){
     let params = JSON.stringify(user);
     return this.http.post(this.uri+'saveUserByAdmin/'+idAdmin, params, this.httpOptionsAuth)
@@ -101,14 +98,21 @@ export class RestUserService {
   }
 
   deleteUserAdmin(idUser, idUser2,password){
-    return this.http.put(this.uri+idUser + '/deleteUserAdmin/' + idUser2._id, {password: password},  this.httpOptionsAuth)
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.put(this.uri+idUser + '/deleteUserAdmin/' + idUser2._id, {password: password}, {headers:headers})
     .pipe(map(this.extractData))
   }
 
-  
   updateUserAdmin(idUser,userToUpdate){
-    let params = JSON.stringify(userToUpdate);    
-    return this.http.put(this.uri+idUser + '/UpdateUserAdmin/'+userToUpdate._id, params, this.httpOptionsAuth)
+    let params = JSON.stringify(userToUpdate);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.put(this.uri+idUser + '/UpdateUserAdmin/'+userToUpdate._id, params, {headers:headers})
     .pipe(map(this.extractData))
   }
 
@@ -116,5 +120,6 @@ export class RestUserService {
     return this.http.get(this.uri+'getUser', this.httpOptionsAuth)
     .pipe(map(this.extractData))
   }
+
 
 }

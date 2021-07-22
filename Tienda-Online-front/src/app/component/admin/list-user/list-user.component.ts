@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
@@ -13,12 +12,12 @@ import Swal from 'sweetalert2';
 })
 export class ListUserComponent implements OnInit ,DoCheck{
   users:[];
-  public optionsRole = ['ROLE_ADMIN', 'ROLE_USER'];
+  optionsRole = ['ROLE_ADMIN', 'ROLE_USER'];
   public possiblePass;
   public userSelected: User;
   search;
   message;
-  token: String;
+  public token;
   user;
   uri;
 
@@ -27,8 +26,7 @@ export class ListUserComponent implements OnInit ,DoCheck{
     this.user = this.restUser.getUser();
     this.token = this.restUser.getToken();
     this.uri = CONNECTION.URI;
-    this.userSelected = new User('','','','','','','','','',[]);
-    this.possiblePass = '';
+ 
    }
 
   ngOnInit(): void {
@@ -99,7 +97,6 @@ export class ListUserComponent implements OnInit ,DoCheck{
     this.restUser.updateUserAdmin(this.user._id,  this.userSelected).subscribe((res:any)=>{     
         if(res.userUpdated){         
           location.reload()
-          alert(res.message);
           localStorage.setItem('user', JSON.stringify(res.userUpdated));
 
         }else{     
@@ -115,9 +112,15 @@ export class ListUserComponent implements OnInit ,DoCheck{
           
         }
     },
-    error => alert(error.error.message))
-   
-    
+    error =>{
+      if (error.status == 401) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lo Sentimos...',
+          text: 'Usuario ya existente!'
+        })
+      }
+    })
   }
   
 

@@ -1,6 +1,7 @@
 <div id="container">	
 
   <div class="product-image">
+    <h3 class="text-center email">{{user.email}}</h3>
     <img *ngIf="user.image != null || user.image != undefined" class="rounded-circle img" src="{{uri+'getImage/'+user.image}}" />
     <img *ngIf="user.image == null || user.image == undefined " class="rounded-circle img" src="../../../assets/img/editUserDefault.png" />
     

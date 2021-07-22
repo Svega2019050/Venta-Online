@@ -1,16 +1,25 @@
 
 .main-box{
     width: 15rem;
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
     box-shadow: 2px 4px 2px 4px rgba(47, 150, 102, 0.65);
     border-radius: 10px;
     text-align: center;
+    display: inline-block;
     background-color: #dae4e0;
     padding: 20px 0;
-    display: inline-block;
     margin: 1rem;
 }
+
+.div{
+    display: inline-block;
+}
+.div2{
+    border-top: 1px solid #000000;
+    display: inline-block;
+}
+
 
 .big-circle{
     width: 150px;
@@ -42,4 +51,12 @@
     color: #46E097;
     background: #DAF9F6;
     font-weight: 600;
+}
+
+h2{
+    margin-top: 1rem;
+    text-transform: capitalize;
+}
+.card-title{
+    text-transform: uppercase;
 }
