@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
 
 .card-title h5 {
@@ -9,7 +8,7 @@
 .col{
     background: rgb(121, 179, 215);
     color: #fff;
-    padding: 0.5rem 1.5rem;
+    padding: 0.2rem 1.5rem;
     border-radius: 20px;
     margin: 2rem 1rem;
     margin-bottom: 0;
@@ -24,7 +23,7 @@
 }
 
 .far{
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .card{
     border-radius: 1rem;

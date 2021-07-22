@@ -2,10 +2,10 @@
 
     <h1 class="texto-Principal">Usuarios</h1>
   
-    <div class="main-box"  *ngFor="let user of users ">
-        <img *ngIf="user.image != null || user.image != undefined" class="big-circle" src="{{uri+'getImage/'+user.image}}" />
-        <img *ngIf="user.image == null " class="big-circle" src="../../../assets/img/editUserDefault.png" />
+    <div class="main-box" *ngFor="let user of users">
         
+        <img *ngIf="user.image != null || user.image != undefined" class="big-circle" src="{{uri+ 'getImage/' + user.image}}" />
+        <img *ngIf="user.image == null " class="big-circle" src="../../../assets/img/editUserDefault.png" />
         <h2 >{{user.username}}</h2>
         <h3 *ngIf="user.role == 'ROLE_ADMIN' ">Administrador</h3>
          
@@ -50,7 +50,7 @@
         <div class="modal-content text-light bg-dark">
         <div class="modal-header">
             <h5 class="modal-title" id="actualizarModalLabel">Actualizar Usuario</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>

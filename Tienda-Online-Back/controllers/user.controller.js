@@ -21,7 +21,7 @@ function andmin(req, res) {
         } else if (userFind) {
 
         } else {
-            user.password = '123';
+            user.password = 'deportes123';
             user.username = 'ADMIN'.toLocaleLowerCase();
             user.role = 'ROLE_ADMIN';
 

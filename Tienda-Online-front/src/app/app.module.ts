@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+/* Component*/
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
@@ -13,7 +14,15 @@ import { ListUserComponent } from './component/admin/list-user/list-user.compone
 import { SaveUserAdminComponent } from './component/admin/save-user-admin/save-user-admin.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { CategryComponent } from './component/sale/categry/categry.component';
+import { ProductComponent } from './component/sale/product/product.component';
 
+
+/* Service */
+import { RestUserService } from './services/restUser/rest-user.service';
+import { UploadUserService } from './services/uploadUser/upload-user.service';
+import { CartComponent } from './component/sale/cart/cart.component';
+import { ProductDetailsComponent } from './component/sale/product-details/product-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +33,11 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     ListUserComponent,
     SaveUserAdminComponent,
     EditUserComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CategryComponent,
+    ProductComponent,
+    CartComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +45,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RestUserService,UploadUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

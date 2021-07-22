@@ -21,6 +21,14 @@
             <a class="nav-link"  *ngIf="token == null"  routerLink="/login" routerLinkActive="active"><i class="fas fa-user-alt"></i> Iniciar sesión</a>
           </li>
 
+          <li class="nav-item" *ngIf="token != null || token != undefined ">
+            <a class="nav-link" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/category" routerLinkActive="active"><i class="fas fa-boxes"></i> Categoría</a>
+          </li>
+          
+          <li class="nav-item"*ngIf="token != null || token != undefined" >
+            <a class="nav-link" *ngIf="user.role == 'ROLE_ADMIN'"   routerLink="/product" routerLinkActive="active"><i class="fas fa-box"></i> Product</a>
+          </li>
+    
           <!-- Logeado-->
           <li class="nav-item dropdown"  *ngIf="token != null || token != undefined">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,18 +39,19 @@
               <li *ngIf="user.role == 'ROLE_ADMIN'"><a class="dropdown-item" routerLink="/saveUserAdmin"><i class="fas fa-user-plus"></i> Guardar Usuario</a></li>
               <li *ngIf="user.role == 'ROLE_ADMIN'"><a class="dropdown-item" routerLink="/listUsers"><i class="fas fa-clipboard-list"></i> Lista de Usuario</a></li>
               <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item"  routerLink="/cart" ><i class="fas fa-shopping-cart"></i> Carrito</a></li>
               <li><a class="dropdown-item" (click)="logOut()"><i class="fas fa-power-off"></i> Cerrar sesión</a></li>
             </ul>
           </li>
           
           <div >
-
             <a class="text-color nav-link" routerLink="/editUser" *ngIf="token != null || token != undefined"><span>{{user.username}}
-              <img *ngIf="user.image != null || user.image != undefined" class=" img" src="{{uri+'getImage/'+user.image}}" />
+              <img *ngIf="user.image != null || user.image != undefined" class=" img" src="{{uri+'getImage/'+ user.image}}" />
               <img *ngIf="user.image == null " class="rounded-circle img" src="../../../assets/img/editUserDefault.png" />
             </span>
             </a>
           </div>
+          
         </ul>
 
         <!-- 

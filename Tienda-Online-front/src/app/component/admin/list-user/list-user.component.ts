@@ -47,7 +47,11 @@ export class ListUserComponent implements OnInit ,DoCheck{
         this.users = res.users;
       }
     },
-    error => {location.reload()}
+    error => {
+      if (error.status == 404) {
+        this.listUsers();
+      }
+    }
     );
 
   }
@@ -65,7 +69,7 @@ export class ListUserComponent implements OnInit ,DoCheck{
     }
   }
 
- deleteUser(){
+  deleteUser(){
     this.restUser.deleteUserAdmin(this.user._id, this.userSelected, this.possiblePass ).subscribe((res:any)=>{
       if (res.userDelete) {   
         localStorage.setItem('user',JSON.stringify(res.userDelete));
