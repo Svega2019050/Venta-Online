@@ -1,0 +1,120 @@
+<div class="rounded container p-3 my-3 borderr">
+  <h1 class="titulo-principal">Usuarios</h1>
+
+
+  <div class="main-box"  *ngFor="let user of users ">
+    <img *ngIf="user.image != null || user.image != undefined" class="big-circle" src="{{uri+'getImage/'+user.image}}" />
+    <img *ngIf="user.image == null " class="big-circle" src="../../../assets/img/editUserDefault.png" />
+    
+    <h2 class="heading-name">{{user.username}}</h2>
+
+     
+    <a class="follow_btn" (click)="obtenerData(user)" data-toggle="modal" data-target="#actualizarModal"><i class="far fa-edit raise"></i></a>
+    <a class="follow_btn" (click)="obtenerData(user)" data-toggle="modal" data-target="#eliminarModal"><i class="far fa-trash-alt raise text-danger"></i></a>
+  </div>
+
+
+    <!-- MODAL PARA ELIMINAR CUENTA -->
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true" *ngIf="userSelected.role != 'ROLE_ADMIN'">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eliminarModalLabel">Peligro!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body  text-center">
+
+              <form #formRemove="ngForm">
+                <h5 class="text-center mb-3 card-title" >{{userSelected.username}}</h5>
+                <div class="form-group mx-sm-3 mb-2 ">
+                  <span class="text-danger text-center">Estas Seguro de Eliminar la cuenta! </span> <br>
+                  <label for="passwordRemove" ></label>
+                  <input  [(ngModel)]="possiblePass" name="possiblePass" type="password" class="form-control" id="possiblePass" aria-describedby="possiblePass" placeholder="Contraseña" required>
+                </div>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-danger " data-dismiss="modal" (click)="deleteUser()" [disabled]="!formRemove.form.valid">Confirmar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!--Modal Para Actualizar Cuenta-->
+    <div class="modal fade" id="actualizarModal" tabindex="-1" aria-labelledby="actualizarModalLabel" aria-hidden="true" *ngIf="userSelected.role != 'ROLE_ADMIN'">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="actualizarModalLabel">Actualizar Usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center ">
+
+            <h5 class="text-center mb-3 card-title" >{{userSelected.username}}</h5>
+            
+            <form class="form-signin" #updateUser="ngForm">
+              <div class="form-row">
+                  <div class="col">
+                      <div class="form-group">
+                          <label for="inputName">Nombre</label>
+                          <input [(ngModel)]="userSelected.name" name="name" #name="ngModel" class="form-control" id="inputName" type="text" placeholder="Nombre" required>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label for="inputlastname">Apellido</label>
+                          <input [(ngModel)]="userSelected.lastname" #lastname="ngModel" name="lastname" class="form-control" type="text" id="inputlastname" placeholder="Apellido" >
+                      </div>   
+                      
+                  </div>        
+              </div>
+      
+              <div class="form-row">
+                  <div class="form-group col">
+                      <label for="inputUsername">Usuario</label>
+                      <input [(ngModel)]="userSelected.username" #username="ngModel" name="username" class="form-control" type="text" id="inputUsername" placeholder="Usuario" required>         
+                  </div>
+
+                  <div class="col">
+                    <div class="form-group">
+                        <label for="inputphone">Teléfono</label>
+                        <input [(ngModel)]="userSelected.phone" #phone="ngModel" name="phone" class="form-control" type="text" id="inputphone" placeholder="Teléfono" >
+                    </div>      
+                  </div>
+              </div>
+  
+              <div class="row">             
+                  <div class=" col form-group">
+                      <label for="inputEmail">Email</label>
+                      <input [(ngModel)]="userSelected.email" #email="ngModel" name="email" class="form-control" type="email" id="inputEmail" placeholder="Email" required>         
+                  </div>
+                  <div class="form-group col">
+                      <label for="selectRole">Select role:</label>
+                      <select [(ngModel)]="userSelected.role" name="role" id="selectRole" class="form-control">
+                          <option *ngFor="let option of optionsRole" [value]="option">{{option}}</option>
+                      </select>
+                  </div>
+              </div>
+  
+             
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary " data-dismiss="modal" (click)="updateUserAdmin()" [disabled]="!updateUser.form.valid">Confirmar</button>
+              </div>
+
+            </form>
+
+          </div>   
+        </div>
+      </div>
+  </div>
+    
+</div>
+
+

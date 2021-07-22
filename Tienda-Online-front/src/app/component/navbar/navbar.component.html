@@ -14,25 +14,35 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/register" routerLinkActive="active"><i class="fas fa-address-book"></i> Registrarse</a>
+            <a class="nav-link" *ngIf="token == null" aria-current="page" routerLink="/register" routerLinkActive="active"><i class="fas fa-address-book"></i> Registrarse</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fas fa-user-alt"></i> Iniciar sesión</a>
+            <a class="nav-link"  *ngIf="token == null"  routerLink="/login" routerLinkActive="active"><i class="fas fa-user-alt"></i> Iniciar sesión</a>
           </li>
 
-          <li class="nav-item dropleft">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+          <!-- Logeado-->
+          <li class="nav-item dropdown"  *ngIf="token != null || token != undefined">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Más
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" routerLink="/editUser"><i class="fas fa-user-edit"></i> Editar Cuenta</a></li>
+              <li *ngIf="user.role == 'ROLE_ADMIN'"><a class="dropdown-item" routerLink="/saveUserAdmin"><i class="fas fa-user-plus"></i> Guardar Usuario</a></li>
+              <li *ngIf="user.role == 'ROLE_ADMIN'"><a class="dropdown-item" routerLink="/listUsers"><i class="fas fa-clipboard-list"></i> Lista de Usuario</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" (click)="logOut()"><i class="fas fa-power-off"></i> Cerrar sesión</a></li>
             </ul>
           </li>
+          
+          <div >
 
+            <a class="text-color nav-link" routerLink="/editUser" *ngIf="token != null || token != undefined"><span>{{user.username}}
+              <img *ngIf="user.image != null || user.image != undefined" class=" img" src="{{uri+'getImage/'+user.image}}" />
+              <img *ngIf="user.image == null " class="rounded-circle img" src="../../../assets/img/editUserDefault.png" />
+            </span>
+            </a>
+          </div>
         </ul>
 
         <!-- 

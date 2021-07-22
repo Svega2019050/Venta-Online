@@ -1,0 +1,45 @@
+
+.main-box{
+    width: 15rem;
+    max-width: 50%;
+    height: auto;
+    box-shadow: 2px 4px 2px 4px rgba(47, 150, 102, 0.65);
+    border-radius: 10px;
+    text-align: center;
+    background-color: #dae4e0;
+    padding: 20px 0;
+    display: inline-block;
+    margin: 1rem;
+}
+
+.big-circle{
+    width: 150px;
+    height: 150px;
+    border: 10px solid #46E097;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+}
+
+
+.heading-name{
+  margin: 1.5rem;   
+}
+
+
+.follow_btn{
+    
+    background: #46E097;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    margin: 1rem;
+    font-size: 1.5rem;
+    box-shadow: 2px 2px 1px 1px rgba(31, 92, 64, 0.65);
+}
+
+.follow_btn:hover{
+    color: #46E097;
+    background: #DAF9F6;
+    font-weight: 600;
+}

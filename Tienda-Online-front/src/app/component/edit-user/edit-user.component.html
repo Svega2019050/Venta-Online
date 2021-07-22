@@ -1,0 +1,118 @@
+<div id="container">	
+
+  <div class="product-image">
+    <img *ngIf="user.image != null || user.image != undefined" class="rounded-circle img" src="{{uri+'getImage/'+user.image}}" />
+    <img *ngIf="user.image == null || user.image == undefined " class="rounded-circle img" src="../../../assets/img/editUserDefault.png" />
+    
+    <h3 class="text-center ">{{user.name}} {{user.lastname}}</h3>
+    <button type="button" class="btn btn-primary button-edit" data-bs-toggle="modal" data-bs-target="#cargarImgModal">
+      Cargar Imagen
+    </button>
+  </div>
+
+  <div class="product-details"> 
+          
+    <h1 class="text-color">Iniciar sesión</h1><br>
+    <form class="form-signin text-color" #updateUserForm="ngForm" >
+   
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                  <label for="inputName">Nombre</label>
+                  <input [(ngModel)]="user.name" name="name" class="form-control" id="inputName" type="text" placeholder="Nombre" >
+              </div>
+          </div>
+          <div class="col">
+              <div class="form-group">
+                  <label for="inputlastname">Apellido</label>
+                  <input [(ngModel)]="user.lastname" name="lastname" class="form-control" type="text" id="inputlastname" placeholder="Apellido" >
+              </div>   
+              
+          </div>        
+      </div>
+  
+      <div class="row">
+          <div class="form-group col">
+              <label for="inputUsername">Usuario</label>
+              <input [(ngModel)]="user.username" name="username" class="form-control" type="text" id="inputUsername" placeholder="Usuario" required>         
+          </div>    
+          
+          <div class="form-group col">
+            <label for="inputphone">Teléfono</label>
+            <input [(ngModel)]="user.phone" name="phone" class="form-control" type="text" id="inputphone" placeholder="Teléfono">
+          </div>  
+      </div>
+  
+      <div class="row">
+          <div class=" col form-group">
+              <label for="inputEmail">Email</label>
+              <input [(ngModel)]="user.email" name="email" class="form-control" type="email" id="inputEmail" placeholder="Email" >         
+          </div>
+      </div>
+  
+     <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-success button-edit" (click)="updateUser()" [disabled]="!updateUserForm.form.valid">
+          Actualizar
+        </button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger button-edit" data-bs-toggle="modal" data-bs-target="#eliminarModal" >Eliminar Cuenta</button>
+      </div>
+     </div>
+
+    </form>
+            
+  </div>
+
+
+  <!-- Eliminar Cuenta Modal-->
+  <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eliminarModalLabel">Peligro!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #delete="ngForm">
+            <div class="mb-3 text-color">
+              <span>Estas Seguro de Eliminar Tú Cuenta</span>
+              <input [(ngModel)]="possiblePass" name="password" type="password" class="form-control" id="inputPassword" placeholder="Contraseña" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
+              <button type="button" class="btn btn-danger" [disabled]="!delete.form.valid" (click)="deleteUser()" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+          </form>
+        </div>    
+      </div>
+    </div>
+  </div>
+    
+    <!-- MODAL PARA SUBIR IMAGEN -->
+    <div class="modal fade" id="cargarImgModal" tabindex="-1" aria-labelledby="cargarImgModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cargarImgModalLabel">Guardar Imagen de Usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3>Subir Imagen</h3>
+            <form #formUpload="ngForm">
+              <label for="inputImage"></label>
+              <input type="file" name="image" id="inputImage" class="form-control" (change)="fileChange($event)" required>
+            </form>
+
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="uploadImage()">Cargar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+

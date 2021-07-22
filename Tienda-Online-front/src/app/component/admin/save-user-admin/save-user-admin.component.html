@@ -8,7 +8,7 @@
     <div class="product-details">
             
         <h1 class="text-color">Registrarse</h1><br>
-        <form class="form-signin text-color" #register="ngForm" >
+        <form class="form-signin" #saveUser="ngForm" (ngSubmit)="onSubmit(saveUser)">
    
             <div class="row">
                 <div class="col">
@@ -49,12 +49,18 @@
                     <input [(ngModel)]="user.email" name="email" class="form-control" type="email" id="inputEmail" placeholder="Email" required>         
                 </div>
             </div>
-
+            <div class="form-group col">
+                <label for="selectRole">Select role:</label>
+                <select [(ngModel)]="user.role" name="role" id="selectRole" class="form-control" required>
+                    <option *ngFor="let option of optionsRole" [value]="option">{{option}}</option>
+                </select>
+            </div>
            
-            <button type="button" class="btn btn-primary" (click)="saverUser()" [disabled]="!register.form.valid">Aceptar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!saveUser.form.valid">Aceptar</button>
+
         </form>
 
-        <h2><i class="far fa-copyright"></i> 2021</h2>
+     
                 
     </div>
 
