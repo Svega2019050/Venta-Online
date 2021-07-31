@@ -117,9 +117,20 @@ export class RestUserService {
   }
 
   getUsers(){
-    return this.http.get(this.uri+'getUser', this.httpOptionsAuth)
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.get(this.uri+'getUser', {headers:headers})
     .pipe(map(this.extractData))
   }
 
-
+  getUserImage(fileName){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.get(this.uri+'getImage/' + fileName, {headers:headers})
+    .pipe(map(this.extractData))
+  }
 }

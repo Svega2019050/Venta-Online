@@ -23,6 +23,7 @@ import { RestUserService } from './services/restUser/rest-user.service';
 import { UploadUserService } from './services/uploadUser/upload-user.service';
 import { CartComponent } from './component/sale/cart/cart.component';
 import { ProductDetailsComponent } from './component/sale/product-details/product-details.component';
+import { SearchPipe } from './pipes/search.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { ProductDetailsComponent } from './component/sale/product-details/produc
     CategryComponent,
     ProductComponent,
     CartComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ var api = express.Router();
 api.post('/saveUser', userController.saveUser);
 api.post('/saveUserByAdmin/:userId', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin], userController.saveUserByAdmin);
 api.post('/login', userController.login);
-api.post('/search', userController.search);
+
 
 
 /* Get */

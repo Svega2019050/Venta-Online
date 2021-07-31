@@ -13,7 +13,7 @@ var userSchema = Schema({
     phone: Number,
     role: String,
     image: String,
-    categoria: [{ type: Schema.ObjectId, ref: 'categoria' }]
+    category: [{ type: Schema.ObjectId, ref: 'category' }]
 });
 userSchema.pre('save', function (next) {
     bcrypt.genSalt(10).then(salts => {

@@ -21,7 +21,7 @@ function andmin(req, res) {
         } else if (userFind) {
 
         } else {
-            user.password = 'deportes123';
+            user.password = '123';
             user.username = 'ADMIN'.toLocaleLowerCase();
             user.role = 'ROLE_ADMIN';
 
@@ -415,29 +415,11 @@ function UpdateUserAdmin(req, res) {
 }
 
 /* Buscar */
-function search(req, res) {
-    var params = req.body;
 
-    if (params.search) {
-        User.find({ $or: [{ lastName: params.search }] }, (err, resultSearch) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error general' });
-            } else if (resultSearch) {
-                return res.send({ message: 'Coincidencias encontradas: ', resultSearch });
-            } else {
-                return res.status(403).send({ message: 'Búsqueda sin coincidencias' });
-            }
-        });
-    } else {
-        return res.status(403).send({ message: 'Ingrese datos en el campo de búsqueda' });
-    }
-
-
-}
 
 function getUser(req, res) {
 
-    User.find({}).populate('torneo').exec((err, users) => {
+    User.find({}).populate('category').exec((err, users) => {
         if (err) {
             return res.status(500).send({ message: 'Error general en el servidor' })
         } else if (users) {
@@ -454,7 +436,6 @@ module.exports = {
     saveUser,
     updateUser,
     removeUser,
-    search,
     getUser,
     saveUserByAdmin,
     uploadImageUser,

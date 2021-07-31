@@ -1,8 +1,18 @@
+
 <div class="rounded container border">
 
     <h1 class="texto-Principal">Usuarios</h1>
-  
-    <div class="main-box" *ngFor="let user of users">
+
+    <div class="demo">
+        <form class="form-search">
+          <div class="input-group">
+            <input class="form-control form-text" maxlength="128"  [(ngModel)]="search"  name="search" type="search" placeholder="Search" aria-label="Search"  placeholder="Buscar Usuario" size="15" type="text" />
+            <span class="input-group-btn"><button class="btn btn-dark"><i class="fa fa-search fa-lg">&nbsp;</i></button></span>
+          </div>
+        </form>
+    </div>
+
+    <div class="main-box" *ngFor="let user of users | search:search">
         
         <img *ngIf="user.image != null || user.image != undefined" class="big-circle" src="{{uri+ 'getImage/' + user.image}}" />
         <img *ngIf="user.image == null " class="big-circle" src="../../../assets/img/editUserDefault.png" />
@@ -119,7 +129,7 @@
 
         
       
-  </div>
+</div>
   
   
   
