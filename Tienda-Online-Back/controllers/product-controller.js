@@ -101,7 +101,7 @@ function setProduct(req, res) {
                                         .send({ message: "Error general guardando el producto" });
                                 } else if (productSaved) {
                                     Category.findByIdAndUpdate(
-                                        idCategory, { $push: { productsId: productSaved._id } }, { new: true },
+                                        idCategory, { $push: { product: productSaved._id } }, { new: true },
                                         (err, categoryUpdated) => {
                                             if (err) {
                                                 return res.status(500).send({ message: "Error general" });

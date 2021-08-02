@@ -6,7 +6,7 @@ const mdAuth = require('../middlewares/authenticated');
 
 var  api = express.Router();
 
-api.put('/:userId/saveCategory', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],categoryController.saveCategory);
+api.post('/:userId/saveCategory', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],categoryController.saveCategory);
 api.put('/:userId/deleteCategory/:categoryId', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],categoryController.deleteCategory);  
 api.put('/:userId/updateCategory/:categoryId', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],categoryController.updateCategory);  
 
