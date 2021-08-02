@@ -18,32 +18,24 @@ function saveCategory(req,res) {
                 return res.status(500).send({message: 'Error General',err});
             }else if(userFind) {
                 if (params.nameCategory) {
-                    categoryModel.findOne({nameCategory: params.nameCategory.toLowerCase()},(err,categoryDetect)=>{
+                    category.nameCategory = params.nameCategory.toLowerCase();
+                    category.description = params.description;
+    
+                    category.save((err,categorySave)=>{
                         if (err) {
                             return res.status(500).send({message: 'Error General',err});
-                        }else if(categoryDetect) {
-                            return res.status(404).send({message: 'Nombre De Categoria ya existente'});
-                        } else {
-                            category.nameCategory = params.nameCategory.toLowerCase();
-                            category.description = params.description;
-            
-                            category.save((err,categorySave)=>{
+                        }else if(categorySave) {
+                            userModel.findByIdAndUpdate(userId,{$push:{category: categorySave}},{new: true},(err,categoryPush)=>{
                                 if (err) {
                                     return res.status(500).send({message: 'Error General',err});
-                                }else if(categorySave) {
-                                    userModel.findByIdAndUpdate(userId,{$push:{category: categorySave}},{new: true},(err,categoryPush)=>{
-                                        if (err) {
-                                            return res.status(500).send({message: 'Error General',err});
-                                        }else if(categoryPush) {
-                                            return res.send({message: 'Categoria Guardada Con Exito',categoryPush});
-                                        } else {
-                                            return res.status(403).send({message: 'Erro al guardar Categoria'});
-                                        }
-                                    }).populate('category');
+                                }else if(categoryPush) {
+                                    return res.send({message: 'Categoria Guardada Con Exito',categoryPush});
                                 } else {
                                     return res.status(403).send({message: 'Erro al guardar Categoria'});
                                 }
-                            });
+                            }).populate('category');
+                        } else {
+                            return res.status(403).send({message: 'Erro al guardar Categoria'});
                         }
                     });
                 } else {

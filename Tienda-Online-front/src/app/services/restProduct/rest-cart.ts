@@ -4,6 +4,7 @@ import { CONNECTION } from '../global.service';
 import { RestUserService } from '../restUser/rest-user.service';
 import { RestCategoryService } from '../restCategory/rest-category.service';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class RestCart{
   public token;
   public user;
 
-  constructor(private http:HttpClient, private restUser:RestUserService, private restCategory: RestCategoryService) { 
+  constructor(private http:HttpClient, private restUser:RestUserService) { 
     this.uri = CONNECTION.URI;
   }
 
@@ -50,11 +51,25 @@ export class RestCart{
   getCarts(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.restUser.getToken()
+      'Authorization': this.getToken()
     })
-    return this.http.get(this.uri+'getCart',{headers:headers})
+
+    return this.http.get(this.uri+'getCart', {headers:headers} )
     .pipe(map(this.extractData))
+
   }
+
+  buy(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+
+    return this.http.post(this.uri+'buy', null,{headers:headers} )
+    .pipe(map(this.extractData))
+
+  }
+
   getInvoices(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

@@ -27,7 +27,7 @@ export class CartComponent implements OnInit,DoCheck {
   uri;  
   
   constructor(private restUser:RestUserService,private restProduct: RestProductService,
-    private restCart: RestCart,private restCategory:RestCategoryService, private route: Router) {
+    private restCart: RestCart, private route: Router) {
     this.uri = CONNECTION.URI;
     
   }
@@ -44,10 +44,8 @@ export class CartComponent implements OnInit,DoCheck {
   listCarts(){
     this.restCart.getCarts().subscribe((res:any)=>{
       if (res.carts) {
-        this.carts = res.carts;
-
-      }else{
-        //alert(this.message)
+        this.carts = res.carts
+      } else {
         console.log( this.message)
       }
     },error =>{
@@ -59,8 +57,7 @@ export class CartComponent implements OnInit,DoCheck {
         })
         this.route.navigateByUrl('home');
       }
-      
     })
-    
+   
   }
 }

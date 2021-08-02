@@ -33,6 +33,7 @@ export class CategryComponent implements OnInit,DoCheck {
   ngOnInit(): void {
     localStorage.removeItem('categorySelect');
     this.listCategories();
+
   }
 
   ngDoCheck(){

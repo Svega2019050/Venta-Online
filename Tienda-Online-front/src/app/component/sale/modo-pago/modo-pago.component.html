@@ -4,7 +4,7 @@
         <img src="../../../../assets/img/chip-tarjeta.png" class="img-masterCard"  alt="visa">
     </div>
     <div class=" textCard">
-        <label for="inputYY" class="form-label">#### #### #### ####</label><br>
+        <label for="inputNumber" class="form-label">#### #### #### ####</label><br>
         <label for="inputYY" class="form-label">Nombre Tarjeta</label>
         
     </div>
@@ -12,23 +12,27 @@
 
 <div class="container-ModoPago">
 
-    <form class="row g-3" >
+    <form class="row g-3" #Metodo="ngForm">
         <div class="col-12">
           <label for="inputNumber" class="form-label">Número de tarjeta</label>
-          <input type="number" class="form-control" id="inputNumber"  placeholder="Número de tarjeta"  max="2">
+          <input name="number" #number="ngModel" [(ngModel)]="formModel.number" class="form-control"
+          placeholder="Número de tarjeta" id="inputNumber" minlength="16" maxlength="16" required>
         </div>
         <div class="col-md-4">
           <label for="inputMM" class="form-label">MM</label>
-          <input type="month" class="form-control" id="inputMM">
+          <input type="number" name="Mes" #Mes="ngModel" id="inputMM"[(ngModel)]="formModel.Mes" class="form-control"
+          placeholder="##" max="12" minlength="1" maxlength="2" required>
         </div>
         
         <div class="col-md-4">
             <label for="inputYY" class="form-label">YY</label>
-            <input type="date" class="form-control" id="inputYY">
+            <input type="number" name="year" #year="ngModel" id="inputYY"[(ngModel)]="formModel.year" class="form-control"
+          placeholder="####" minlength="4" maxlength="4" required>
         </div>
         <div class="col-md-2">
         <label for="inputCCV" class="form-label">CCV</label>
-        <input type="text" class="form-control" id="inputCCV">
+        <input type="number" name="CCV" #CCV="ngModel" id="inputCCV"[(ngModel)]="formModel.CCV" class="form-control"
+        placeholder="###"  minlength="3" maxlength="3" required>
         </div>
         <div class="col-md-2">
             <i class="fas fa-credit-card carIcon"></i>
@@ -36,15 +40,16 @@
 
         <div class="col-12">
             <label for="inputNombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+            <input type="text" name="name" #name="ngModel" id="inputNombre"[(ngModel)]="formModel.name" class="form-control"
+             placeholder="Nombre" required>
           </div>
 
         <div class="row">
             <div class="col">
-                <button type="button" routerLink='/home' class="btn btn-danger ">Cancelar</button>
+                <button type="button" routerLink='/home' class="btn btn-danger">Cancelar</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-warning">Pagar ahora</button>
+                <button type="button" class="btn btn-warning" (click)="buy()" [disabled]="!Metodo.form.valid">Pagar ahora</button>
             </div>
         </div> 
     </form>
