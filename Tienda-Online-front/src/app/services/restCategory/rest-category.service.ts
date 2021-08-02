@@ -30,7 +30,7 @@ export class RestCategoryService {
   getToken(){
     let token = localStorage.getItem('token');
     if(token != undefined || token != null){
-      this.token = token;
+      this.token = token; 
     }else{
       this.token = null
     }
@@ -49,40 +49,40 @@ export class RestCategoryService {
     .pipe(map(this.extractData))
   }
 
-  updateCategory(idUser, torneo){
+  updateCategory(idUser, Category){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    let params = JSON.stringify(torneo)
-    return this.http.put(this.uri+idUser+'/updateTorneo/'+torneo._id,params, {headers:headers})
+    let params = JSON.stringify(Category)
+    return this.http.put(this.uri+idUser+'/updateCategory/'+Category._id,params, {headers:headers})
     .pipe(map(this.extractData))
   }
 
-  removeCategory(idUser, idTorne){
+  removeCategory(idUser, idCategory){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    return this.http.put(this.uri+idUser+'/removeTorneo/'+idTorne._id, null,{headers:headers})
+    return this.http.put(this.uri+idUser+'/deleteCategory/'+idCategory._id, null,{headers:headers})
     .pipe(map(this.extractData))
   }
 
-  getCategory(){
+  getCategorys(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    return this.http.get(this.uri+'getTorneos', {headers:headers})
+    return this.http.get(this.uri+'getCategory', {headers:headers})
     .pipe(map(this.extractData))
   }
 
-  getCategoryId(idUser,idTorne){
+  getCategoryId(idUser,idCategory){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    return this.http.get(this.uri+idUser+'/getTorneoId/'+idTorne._id, {headers:headers})
+    return this.http.get(this.uri+idUser+'/getTorneoId/'+idCategory._id, {headers:headers})
     .pipe(map(this.extractData))
   }
 }

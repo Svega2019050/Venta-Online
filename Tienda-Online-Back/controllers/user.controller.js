@@ -14,7 +14,6 @@ andmin();
 function andmin(req, res) {
     var user = new User();
 
-
     User.findOne({ username: user.username = 'ADMIN'.toLocaleLowerCase() }, (err, userFind) => {
         if (err) {
             console.log('Error general', err)

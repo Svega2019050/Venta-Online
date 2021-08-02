@@ -10,6 +10,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 import { RegisterComponent } from './component/register/register.component';
 import { CartComponent } from './component/sale/cart/cart.component';
 import { CategryComponent } from './component/sale/categry/categry.component';
+import { ModoPagoComponent } from './component/sale/modo-pago/modo-pago.component';
 import { ProductDetailsComponent } from './component/sale/product-details/product-details.component';
 import { ProductComponent } from './component/sale/product/product.component';
 import { AdminGuard } from './guards/admin.guard';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'product', component:ProductComponent},
   {path: 'cart', component:CartComponent},
   {path: 'product-details', component:ProductDetailsComponent},
+  {path: 'modoPago', component:ModoPagoComponent},
   
   /* Administrador */
   {path: 'saveUserAdmin', canActivate: [AdminGuard], component:SaveUserAdminComponent},

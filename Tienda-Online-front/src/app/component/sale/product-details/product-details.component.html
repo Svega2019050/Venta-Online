@@ -1,21 +1,36 @@
-<div class="rounded container border text-center">
-    <h1 class="texto-Principal">Comprar Producto</h1>
-    <img src="../../../../assets/img/Icon.png" class="" alt="product">
 
-    <div class="product-body">
-        <h2 class="">Comprar Producto</h2>
-        <div class="row text-left">
-            <div class="col">
-                <h3>Precio:</h3>
-                <h3>Tamaño:</h3>
-                <h3>Maraca:</h3>
-                <h3>Categoria:</h3>
-            </div>
-            <div class="col col-right">
-                <h3>Cantidad</h3>
-                <h3>Agregar al Carrito</h3>
-                <h3>Comprar</h3>
-            </div>
-        </div>
+<button type="button" class="btn btn-warning raise" routerLink="/product" >
+    <i class="fas fa-backward "></i>
+</button>
+<h1 class="text-center category-text">Categoria: <span>{{category.nameCategory}} </span> </h1>
+
+<div id="container">	
+
+    <div class="product-image">
+        <img src="../../../../assets/img/Icon.png" class="img" alt="Product Details">
+        
     </div>
+
+    <div class="product-details">
+            
+        <h1 class="text-color title">{{product.name}}</h1><br>
+          
+        <h1 class="text-color">Precio: ${{product.price}} </h1>
+
+        <div class="footer-product text-center">
+            <div class="row">
+                <div class="col" routerLink='/modoPago'>
+                    <a  data-toggle="modal"  data-target="#actualizarModal" (click)="obtenerData(product)"><i class="fas fa-cash-register"></i> Comprar</a>
+                </div>
+                <div class="col">
+                    <a  data-toggle="modal" data-target="#removeModal"><i class="fas fa-cart-plus"></i> Añadir</a>
+                </div>
+            </div> 
+            <h2><i class="far fa-copyright "></i> 2021</h2>
+        </div>         
+    </div>
+   
+
+  
+  
 </div>

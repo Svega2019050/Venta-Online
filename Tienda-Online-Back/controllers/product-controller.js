@@ -1,8 +1,8 @@
 "use strict";
 
-const Category = require("./../models/category-model");
+const Category = require("./../models/category.model");
 const Product = require("./../models/product-model");
-const bcrypt = require("bcrypt-nodejs");
+
 
 function setProduct(req, res) {
     let product = new Product();
@@ -17,38 +17,47 @@ function setProduct(req, res) {
                 return res.status(500).send({ message: "Error general" });
             } else if (categoryFound) {
                 if (params.name && params.price && params.stock) {
-                    product.name = params.name;
-                    product.price = params.price;
-                    product.stock = params.stock;
-
-                    product.save((err, productSaved) => {
+                    Product.findOne({name: params.name},(err,productCopy)=>{
                         if (err) {
-                            return res
-                                .status(500)
-                                .send({ message: "Error general guardando el producto" });
-                        } else if (productSaved) {
-                            Category.findByIdAndUpdate(
-                                idCategory, { $push: { productsId: productSaved._id } }, { new: true },
-                                (err, categoryUpdated) => {
-                                    if (err) {
-                                        return res.status(500).send({ message: "Error general" });
-                                    } else if (categoryUpdated) {
-                                        return res.send({
-                                            message: "Producto guardado correctamente",
-                                        });
-                                    } else {
-                                        return res
-                                            .status(403)
-                                            .send({ message: "No se puedo actualizar la categoria" });
-                                    }
-                                }
-                            );
+                            return res.status(500).send({message: 'Error General',err});
+                        }else if(productCopy) {
+                            return res.status(401).send({message: 'Nombre de Producto ya existente'})
                         } else {
-                            return res
-                                .status(403)
-                                .send({ message: "No se pudo guardar el producto" });
+                            product.name = params.name;
+                            product.description = params.description;
+                            product.price = params.price;
+                            product.stock = params.stock;
+        
+                            product.save((err, productSaved) => {
+                                if (err) {
+                                    return res
+                                        .status(500)
+                                        .send({ message: "Error general guardando el producto" });
+                                } else if (productSaved) {
+                                    Category.findByIdAndUpdate(
+                                        idCategory, { $push: { productsId: productSaved._id } }, { new: true },
+                                        (err, categoryUpdated) => {
+                                            if (err) {
+                                                return res.status(500).send({ message: "Error general" });
+                                            } else if (categoryUpdated) {
+                                                return res.send({
+                                                    message: "Producto guardado correctamente",categoryUpdated
+                                                });
+                                            } else {
+                                                return res
+                                                    .status(403)
+                                                    .send({ message: "No se puedo actualizar la categoria" });
+                                            }
+                                        }
+                                    );
+                                } else {
+                                    return res
+                                        .status(403)
+                                        .send({ message: "No se pudo guardar el producto" });
+                                }
+                            });
                         }
-                    });
+                    })
                 } else {
                     return res
                         .status(400)
@@ -60,6 +69,74 @@ function setProduct(req, res) {
         });
     }
 }
+
+
+function setProduct(req, res) {
+    let product = new Product();
+    let idCategory = req.params.idC;
+    let params = req.body;
+
+    if (!idCategory) {
+        return res.status(400).send({ message: "Ingrese el idCategoria" });
+    } else {
+        Category.findById(idCategory, (err, categoryFound) => {
+            if (err) {
+                return res.status(500).send({ message: "Error general" });
+            } else if (categoryFound) {
+                Product.findOne({name: params.name},(err,productCopy)=>{
+                    if (err) {
+                        return res.status(500).send({message: 'Error General',err});
+                    }else if(productCopy) {
+                        return res.status(401).send({message: 'Nombre de Producto ya existente'})
+                    } else {
+                        if (params.name && params.price && params.stock) {
+                            product.name = params.name;
+                            product.price = params.price;
+                            product.stock = params.stock;
+        
+                            product.save((err, productSaved) => {
+                                if (err) {
+                                    return res
+                                        .status(500)
+                                        .send({ message: "Error general guardando el producto" });
+                                } else if (productSaved) {
+                                    Category.findByIdAndUpdate(
+                                        idCategory, { $push: { productsId: productSaved._id } }, { new: true },
+                                        (err, categoryUpdated) => {
+                                            if (err) {
+                                                return res.status(500).send({ message: "Error general" });
+                                            } else if (categoryUpdated) {
+                                                return res.send({
+                                                    message: "Producto guardado correctamente",
+                                                });
+                                            } else {
+                                                return res
+                                                    .status(403)
+                                                    .send({ message: "No se puedo actualizar la categoria" });
+                                            }
+                                        }
+                                    );
+                                } else {
+                                    return res
+                                        .status(403)
+                                        .send({ message: "No se pudo guardar el producto" });
+                                }
+                            });
+                        } else {
+                            return res
+                                .status(400)
+                                .send({ message: "Ingrese todos los datos del producto" });
+                        }
+                    }
+                })
+                
+            } else {
+                return res.status(404).send({ message: "Categoria no existe" });
+            }
+        });
+    }
+}
+
 
 function getProduct(req, res) {
     let idProduct = req.params.idP;

@@ -1,0 +1,71 @@
+.container-ModoPago{
+	box-shadow: 0 15px 40px 1px grey;
+	background: rgba(255, 255, 255, 0.90);
+	text-align: center;
+	border-radius: 2rem;
+	padding: 2rem 2rem;
+	margin: 5em auto;
+	height: auto;
+	max-width: 1000px;
+    
+    align-items: center;
+    padding-top: 6rem;
+}
+
+button{
+    width: 50%;
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+}
+
+.carIcon{
+    margin-top: 0.5rem;
+    font-size: 4rem;
+}
+
+.text-align{
+
+    text-align: center;
+}
+
+.img{
+    border-radius: 1rem;
+    height: 20rem;
+    text-align: right;
+    padding: 1rem;
+    width: 95%;
+    max-width: 30rem;
+    margin: 2rem auto;
+    background-position: 50%;
+    background-size: cover;
+    transform: translate(10px, 50%);;
+    background-image: url(../../../../assets/img/bg-tarjeta-02.jpg);
+    margin-top: 0;
+}
+
+.img-masterCard{
+   height: 5rem;
+   width: 8rem;
+}
+
+.img-Chip{
+    text-align: left;
+}
+.img-Chip img {
+    text-align: left;
+    height: 4rem;
+    width: 4rem;
+}
+
+.textCard{
+    padding: 1rem 0.2rem;
+    color: #ffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display:block;
+    text-align: left;
+}
+
+.textCard label{
+   margin-top: 1rem;
+}

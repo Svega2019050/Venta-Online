@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
 
 .card-title h5 {
+    text-transform: uppercase;
     font-family: 'Otomanopee One', sans-serif;
-    margin: 0;
-    
+    margin: 0;   
+}
+.card-titler{
+    text-transform: uppercase;
 }
 .col{
     background: rgb(121, 179, 215);
@@ -48,4 +51,16 @@ img{
     border-radius: 1rem;
     background-color: rgb(245, 247, 252);
     padding: 1rem;
+}
+
+textarea {
+    resize: none;
+}
+textarea::placeholder{
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.row{
+    align-items: center;
 }

@@ -1,19 +1,154 @@
-<div class="rounded container border">
-    <h1 class="texto-Principal">Bienvenidos</h1>
+<button type="button" class="btn btn-warning button" routerLink="/home" >
+    <i class="fas fa-backward "></i>
+</button>
+<div *ngIf="token != null || token != undefined">
+    <h1 class="texto-Principal">Productos</h1>
 
-    <div class="card" style="width: 18rem;">
+    <div class="row"  *ngIf="user.role == 'ROLE_ADMIN'">
+        <div class="col-sm-5" >
+            <button type="button" class="btn btn-info raise"  data-toggle="modal" data-target="#productSaveModal" >
+                <i class="fab fa-product-hunt"></i>  Agregar Producto
+            </button>
+        </div>
+        <div class="col-sm-7 ">
+            <div class="demo">
+                <form class="form-search">
+                  <div class="input-group">
+                    <input class="form-control form-text" maxlength="128"  [(ngModel)]="searchP"  name="searchP" type="search" placeholder="Search" aria-label="Search"  placeholder="Buscar Usuario" size="15" type="text" />
+                    <span class="input-group-btn"><button class="btn btn-dark"><i class="fa fa-search fa-lg">&nbsp;</i></button></span>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo" *ngIf="user.role == 'ROLE_USER'">
+        <form class="form-search">
+          <div class="input-group">
+            <input class="form-control form-text" maxlength="128"  [(ngModel)]="searchP"  name="searchP" type="search" placeholder="Search" aria-label="Search"  placeholder="Buscar Usuario" size="15" type="text" />
+            <span class="input-group-btn"><button class="btn btn-dark"><i class="fa fa-search fa-lg">&nbsp;</i></button></span>
+          </div>
+        </form>
+    </div>
+
+
+    <!-- Products -->
+    <div class="card" style="width: 18rem;" *ngFor="let product of products | searchP:searchP">
         <img src="../../../../assets/img/Icon.png" class="card-img-top" alt="product">
         <div class="card-body  text-center">
-            <a routerLink="/product-details" class="btn btn-color"><h5 class="card-titler">Producto</h5></a>
-            <div class="row">
-                <div class="col">
-                    <a  data-toggle="modal" data-target="#actualizarModal"><i class="far fa-edit raise" ></i></a>
+            <h4 class="card-title">{{product.name}}</h4>
+            <h3> Precio: ${{product.price}}</h3>
+
+            <div class="ver-col" routerLink="/product-details"  >
+                <a (click)="saveProductSelect(product)"  data-toggle="modal" data-target="#eliminarModal"><i class="fas fa-angle-double-right"></i></a>
+            </div>
+
+            <div class="row" *ngIf="user.role == 'ROLE_ADMIN'">
+                <div class="col" data-toggle="modal" data-target="#actualizarModal" (click)="obtenerData(product)">
+                    <a  ><i class="far fa-edit raise" ></i></a>
                 </div>
-                <div class="col">
-                    <a  data-toggle="modal" data-target="#eliminarModal"><i class="far fa-trash-alt raise text-danger " ></i></a>
+                <div class="col"  data-toggle="modal" data-target="#removeModal" (click)="obtenerData(product)">
+                    <a ><i class="far fa-trash-alt raise text-danger " ></i></a>
                 </div>
             </div>   
+
         </div>
+    </div>
+
+
+      <!-- Modal Agregar -->
+    <div class="modal fade" id="productSaveModal" tabindex="-1" role="dialog" aria-labelledby="productSaveModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="productSaveModalLabel">Nuevo Producto</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <form  #SaveProduct="ngForm">
+                <div class="mb-3 text-color">
+                    <label for="inputname" class="form-label"> Nombre Producto</label>
+                    <input  [(ngModel)]="productoSelect.name" name="name" type="text" class="form-control" id="inputname" placeholder="Nombre Producto" required>
+                </div>
+                <div class="mb-3 text-color">
+                    <label for="inputprice" class="form-label"> Precio</label>
+                    <input  [(ngModel)]="productoSelect.price" name="price" type="text" class="form-control" id="inputprice" placeholder="$ Precio" required>
+                </div>
+                <div class="mb-3 text-color">
+                    <label for="inputstock" class="form-label"> Cantidad</label>
+                    <input  [(ngModel)]="productoSelect.stock" name="stock" type="text" class="form-control" id="inputstock" placeholder="Cantidad" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger " data-dismiss="modal" (click)="saveProduct()" [disabled]="!SaveProduct.form.valid">Confirmar</button>
+                </div>
+            </form>
+
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModallLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="removeModallLabel">Peligro!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">{{productoSelect.name}}</h4>
+                <span>Estas Seguro De Eliminar Equipo</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletePoduct()">Eliminar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Actualizar-->
+    <div class="modal fade" id="actualizarModal" tabindex="-1" aria-labelledby="actualizarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="actualizarModalLabel">Actualizar</h4>
+            <button type="button"   class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+
+            <form class="form-signin" #product="ngForm">
+               <div class="mb-3 text-color">
+                    <label for="inputname" class="form-label"> Nombre Producto</label>
+                    <input  [(ngModel)]="productoSelect.name" name="name" type="text" class="form-control" id="inputname" placeholder="Nombre Producto" required>
+                </div>
+                <div class="mb-3 text-color">
+                    <label for="inputprice" class="form-label"> Precio</label>
+                    <input  [(ngModel)]="productoSelect.price" name="price" type="text" class="form-control" id="inputprice" placeholder="$ Precio" required>
+                </div>
+                <div class="mb-3 text-color">
+                    <label for="inputstock" class="form-label"> Cantidad</label>
+                    <input  [(ngModel)]="productoSelect.stock" name="stock" type="text" class="form-control" id="inputstock" placeholder="Cantidad" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"  data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!product.form.valid" (click)="updateProduct()"   >Aceptar</button>                  
+                </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
     </div>
 
 </div>

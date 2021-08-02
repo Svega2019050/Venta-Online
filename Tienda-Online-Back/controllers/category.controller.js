@@ -80,11 +80,11 @@ function updateCategory(req,res) {
                         return res.status(500).send({message: 'Error General',err});
                     }else if(userFind) {
                         categoryModel.findOne({nameCategory: params.nameCategory.toLowerCase()},(err,categoryDetect)=>{
+                            params.nameCategory = params.nameCategory.toLowerCase();
                             if (err) {
                                 return res.status(500).send({message: 'Error General',err});
                             }else if(categoryDetect) {
                                 if (categoryDetect._id == categoryId) {
-                                    params.nameCategory = params.nameCategory.toLowerCase();
                                     categoryModel.findByIdAndUpdate(categoryId, params, {new: true},(err,categoryUpdate)=>{
                                         if (err) {
                                             return res.status(500).send({message: 'Error General',err});

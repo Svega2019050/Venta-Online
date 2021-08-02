@@ -1,0 +1,51 @@
+<div class="img">
+    <img src="../../../../assets/img/mastercard.png" class="img-masterCard"  alt="visa">
+    <div class="img-Chip">
+        <img src="../../../../assets/img/chip-tarjeta.png" class="img-masterCard"  alt="visa">
+    </div>
+    <div class=" textCard">
+        <label for="inputYY" class="form-label">#### #### #### ####</label><br>
+        <label for="inputYY" class="form-label">Nombre Tarjeta</label>
+        
+    </div>
+</div>
+
+<div class="container-ModoPago">
+
+    <form class="row g-3">
+        <div class="col-12">
+          <label for="inputNumber" class="form-label">Número de tarjeta</label>
+          <input type="number" class="form-control" id="inputNumber" placeholder="Número de tarjeta">
+        </div>
+        <div class="col-md-4">
+          <label for="inputMM" class="form-label">MM</label>
+          <input type="month" class="form-control" id="inputMM">
+        </div>
+        
+        <div class="col-md-4">
+            <label for="inputYY" class="form-label">YY</label>
+            <input type="date" class="form-control" id="inputYY">
+        </div>
+        <div class="col-md-2">
+        <label for="inputCCV" class="form-label">CCV</label>
+        <input type="text" class="form-control" id="inputCCV">
+        </div>
+        <div class="col-md-2">
+            <i class="fas fa-credit-card carIcon"></i>
+        </div>
+
+        <div class="col-12">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+          </div>
+
+        <div class="row">
+            <div class="col">
+                <button type="button" routerLink='/product-details' class="btn btn-danger ">Cancelar</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-warning">Pagar ahora</button>
+            </div>
+        </div> 
+    </form>
+</div>

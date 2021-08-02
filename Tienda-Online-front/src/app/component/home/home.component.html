@@ -1,10 +1,12 @@
-<div class="rounded container border">
+<div>
     <h1 class="texto-Principal">Bienvenidos</h1>
 
-    <div class="card" style="width: 18rem;">
-        <img src="../../../../assets/img/Icon.png" class="card-img-top" alt="product">
-        <div class="card-body  text-center">
-            <a routerLink="/product" class="btn btn-color"><h5 class="card-titler">Categoria</h5></a>
+    <div>
+        <div class="card" style="width: 18rem;" *ngFor="let category of categorys">
+            <img src="../../../../assets/img/Icon.png" class="card-img-top" alt="product">
+            <div class="card-body  text-center">
+                <a (click)="saveCategoryLocal(category)" routerLink="/product" class="btn btn-color"><h5 class="card-titler text-uppercase">{{category.nameCategory}}</h5></a>
+            </div>
         </div>
     </div>
 

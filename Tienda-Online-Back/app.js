@@ -2,8 +2,10 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var userRoutes = require('./routes/user.route');
-var categoryRoutes = require('./routes/category.route');
+var userRoute = require('./routes/user.route');
+var CategoryRoute = require('./routes/category.route');
+var productRoute = require('./routes/product-routes');
+
 
 var app = express();
 
@@ -18,9 +20,9 @@ app.use((req, res, next) => {
 	next();
 });
 
+app.use('/api',userRoute);
+app.use('/api',CategoryRoute);
+app.use('/api',productRoute);
 
-
-app.use('/api', userRoutes);
-app.use('/api', categoryRoutes);
 
 module.exports = app;

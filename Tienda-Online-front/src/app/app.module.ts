@@ -24,6 +24,9 @@ import { UploadUserService } from './services/uploadUser/upload-user.service';
 import { CartComponent } from './component/sale/cart/cart.component';
 import { ProductDetailsComponent } from './component/sale/product-details/product-details.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { SearchCategoryPipe } from './pipes/searchCategorypipe ';
+import { SearchProductPipe } from './pipes/searchProduct.pipe';
+import { ModoPagoComponent } from './component/sale/modo-pago/modo-pago.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,10 @@ import { SearchPipe } from './pipes/search.pipe';
     ProductComponent,
     CartComponent,
     ProductDetailsComponent,
-    SearchPipe
+    SearchPipe,
+    SearchCategoryPipe,
+    SearchProductPipe,
+    ModoPagoComponent
   ],
   imports: [
     BrowserModule,

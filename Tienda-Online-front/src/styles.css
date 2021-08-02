@@ -13,6 +13,10 @@
     margin-left: 5rem;
 }
 
+.text-uppercase{
+    text-transform: uppercase;
+    text-align: center;
+}
 
 .texto-Principal {
     text-align: center;

@@ -10,7 +10,7 @@ api.put('/:userId/saveCategory', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],cat
 api.put('/:userId/deleteCategory/:categoryId', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],categoryController.deleteCategory);  
 api.put('/:userId/updateCategory/:categoryId', [mdAuth.ensureAuth, mdAuth.ensureAuthAdmin],categoryController.updateCategory);  
 
-api.get('/getCategory', [mdAuth.ensureAuth],categoryController.getCategory);
+api.get('/getCategory',categoryController.getCategory);
 api.get('/:userId/getCategoryId/:categoryId', [mdAuth.ensureAuth],categoryController.getCategoryId);
 
 module.exports = api;
