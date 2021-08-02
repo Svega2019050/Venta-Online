@@ -36,13 +36,13 @@ function setProduct(req, res) {
                                         if (err) {
                                             return res.status(500).send({message: 'Error General',err});
                                         }else if(productPush) {
-                                            return res.send({message: 'Categoria Guardada Con Exito',productPush});
+                                            return res.send({message: 'Producto Guardado Con Exito',productPush});
                                         } else {
-                                            return res.status(403).send({message: 'Erro al guardar Categoria'});
+                                            return res.status(403).send({message: 'Erro al guardar Producto'});
                                         }
                                     }).populate('product');
                                 } else {
-                                    return res.status(403).send({message: 'Erro al guardar Categoria'});
+                                    return res.status(403).send({message: 'Erro al guardar Producto'});
                                 }
                             });
                         }

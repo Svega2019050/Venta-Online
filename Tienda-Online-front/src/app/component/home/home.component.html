@@ -1,8 +1,18 @@
-<div>
-    <h1 class="texto-Principal">Productos Por Categoría</h1>
+<div *ngIf="token != null || token != undefined">
+    <h1 class="texto-Principal">Productos Por Categoría</h1><br>
+
+    <div class="demo">
+        <form class="form-search">
+          <div class="input-group">
+            <input class="form-control form-text" maxlength="128"  [(ngModel)]="searchs"  name="searchs" type="search" placeholder="Search" aria-label="Search"  placeholder="Buscar Usuario" size="15" type="text" />
+            <span class="input-group-btn"><button class="btn btn-dark"><i class="fa fa-search fa-lg">&nbsp;</i></button></span>
+          </div>
+        </form>
+    </div>
+
 
     <div>
-        <div class="card" style="width: 18rem;" *ngFor="let category of categorys">
+        <div class="card" style="width: 18rem;" *ngFor="let category of categorys | searchs:searchs">
             <img src="../../../../assets/img/Icon.png" class="card-img-top" alt="product">
             <div class="card-body  text-center">
                 <a (click)="saveCategoryLocal(category)" routerLink="/product" class="btn btn-color"><h5 class="card-titler text-uppercase">{{category.nameCategory}}</h5></a>

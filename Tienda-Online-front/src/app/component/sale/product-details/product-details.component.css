@@ -1,4 +1,5 @@
 button{
+    margin: 0 10%;
     margin-top: 0.5rem;
     padding: 0.3rem 5%;
     font-size: 1rem;
@@ -29,11 +30,15 @@ h1{
     margin-top: 2rem;
     font-family: 'STIX Two Math', serif;
 }
+p{
+    text-align: justify;
+}
 .product-details {
     padding: 2rem;
 }
 
 .product-image{
+    align-items: center;
     padding: 1rem;
 }
 
@@ -73,7 +78,7 @@ h1{
 }
 
 .footer-product{
-    margin-top: 15%;
+    margin-top: 1%;
     position: relative;
 }
 
@@ -83,5 +88,18 @@ h1{
 
 
 #container{
+    align-items: center;
     border-radius: 2rem;
+}
+
+.product-image {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+    margin: 0;
+    height: 25rem;
+	width: 50%;	
+}
+.product-image {
+    float: none;
 }

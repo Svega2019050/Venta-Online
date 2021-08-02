@@ -39,7 +39,7 @@
             <h4 class="card-title">{{product.name}}</h4>
             <h3> Precio: ${{product.price}}</h3>
 
-            <div class="ver-col" routerLink="/product-details"  >
+            <div class="ver-col" routerLink="/product-details" (click)="saveProductSelect(product)" >
                 <a (click)="saveProductSelect(product)"  data-toggle="modal" data-target="#eliminarModal"><i class="fas fa-angle-double-right"></i></a>
             </div>
 

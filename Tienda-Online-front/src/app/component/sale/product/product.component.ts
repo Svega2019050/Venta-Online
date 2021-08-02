@@ -34,8 +34,8 @@ export class ProductComponent implements OnInit,DoCheck {
     this.productoSelect = new Product('','','','','','');
     this.user = JSON.parse(localStorage.getItem('user'));
     this.category = JSON.parse(localStorage.getItem('categorySelect'));
-    this.product = JSON.parse(localStorage.getItem('selectProduct'));
     this.listProducts();
+    localStorage.removeItem('selectProduct');
   }
 
   ngDoCheck(){
@@ -67,10 +67,23 @@ export class ProductComponent implements OnInit,DoCheck {
         localStorage.setItem('category', JSON.stringify(this.category))
         this.listProducts();
       } else {
-        alert(res.message);
+        Swal.fire({       
+          icon: 'success',
+          title: 'Producto Creado Correctamente',
+          showConfirmButton: false,
+          timer: 1500,         
+        });  
         this.listProducts();
       }
-    },error=> alert(error.error.message));
+    },error => {
+      if (error.status == 401) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lo sentimos...',
+          text: 'Nombre de Producto ya en uso'        
+        })
+      }
+    });
   }
 
   deletePoduct(){
