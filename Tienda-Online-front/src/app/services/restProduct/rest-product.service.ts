@@ -45,7 +45,7 @@ export class RestProductService {
     })
     let params = JSON.stringify(product);
     let idCParams = JSON.parse(idC);
-    return this.http.post(this.uri+'createProduct/'+idCParams._id , params, {headers:headers})
+    return this.http.put(this.uri+'createProduct/'+idCParams._id , params, {headers:headers})
     .pipe(map(this.extractData))
   }
 
@@ -71,8 +71,8 @@ export class RestProductService {
       'Authorization': this.restCategory.getToken()
     })
     let params = JSON.stringify(product);
-    let torneoParams = JSON.parse(category);
-    return this.http.put(this.uri+torneoParams._id+ '/updateProduct/'+ product._id , params, {headers:headers})
+    let categoryParams = JSON.parse(category);
+    return this.http.put(this.uri+categoryParams._id+ '/updateProduct/'+ product._id , params, {headers:headers})
     .pipe(map(this.extractData))
   }
 
