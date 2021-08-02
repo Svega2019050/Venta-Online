@@ -81,6 +81,10 @@
                     <label for="inputstock" class="form-label"> Cantidad</label>
                     <input  [(ngModel)]="productoSelect.stock" name="stock" type="text" class="form-control" id="inputstock" placeholder="Cantidad" required>
                 </div>
+                <div class="mb-3 text-color">
+                    <label for="Descriptioninput" class="form-label"> Descripción</label>
+                    <textarea [(ngModel)]="productoSelect.description" #description="ngModel" name="description" type="text" class="form-control" id="Descriptioninput"  placeholder="Descripción" cols="10" rows="5"></textarea>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-danger " data-dismiss="modal" (click)="saveProduct()" [disabled]="!SaveProduct.form.valid">Confirmar</button>
@@ -139,6 +143,10 @@
                 <div class="mb-3 text-color">
                     <label for="inputstock" class="form-label"> Cantidad</label>
                     <input  [(ngModel)]="productoSelect.stock" name="stock" type="text" class="form-control" id="inputstock" placeholder="Cantidad" required>
+                </div>
+                <div class="mb-3 text-color">
+                    <label for="Descriptioninput" class="form-label"> Descripción</label>
+                    <textarea [(ngModel)]="productoSelect.description" #description="ngModel" name="description" type="text" class="form-control" id="Descriptioninput"  placeholder="Descripción" cols="10" rows="5"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"  data-dismiss="modal">Cancelar</button>

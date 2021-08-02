@@ -4,6 +4,7 @@ import { CONNECTION } from 'src/app/services/global.service';
 import { RestCategoryService } from 'src/app/services/restCategory/rest-category.service';
 import { RestProductService } from 'src/app/services/restProduct/rest-product.service';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
+import Swal from 'sweetalert2';
 import { SearchProductPipe } from '../../../pipes/searchProduct.pipe';
 
 @Component({
@@ -82,7 +83,12 @@ export class ProductComponent implements OnInit,DoCheck {
         this.product = this.category.product;
 
       } else {
-        alert(res.message)
+        Swal.fire({       
+          icon: 'success',
+          title: 'Producto Eliminado Correctamente',
+          showConfirmButton: false,
+          timer: 1500,         
+        });  
       }
       this.listProducts();
     })
@@ -95,21 +101,28 @@ export class ProductComponent implements OnInit,DoCheck {
     let category = localStorage.getItem('categorySelect');
     this.restProduct.updatePoduct(category, this.productoSelect, ).subscribe((res:any)=>{
       if (res.message) {
-
-        alert(res.message);
-
         this.category = res.message;
-
         localStorage.setItem('category', JSON.stringify(res.message))
-        location.reload()
-
+        Swal.fire({       
+          icon: 'success',
+          title: 'Producto Actualizado Correctamente',
+          showConfirmButton: false,
+          timer: 1500,         
+        });  
         
       } else {
         console.log(this.productoSelect)
-        location.reload()
+      }
+    },error => {
+      if (error.status == 404) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lo sentimos...',
+          text: 'Nombre de Producto ya en uso'        
+        })
       }
     })
-    error =>alert(error.error.message)
+  
   }
 
   
