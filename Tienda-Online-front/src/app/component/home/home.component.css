@@ -50,3 +50,93 @@ img{
     background-color: rgb(245, 247, 252);
     padding: 1rem;
 }
+
+div .rounded{
+    margin-bottom: 0.5rem;
+}
+
+p{
+    background-color: rgb(22, 47, 68);
+    border-radius: 1rem;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+h5{
+   font-family: 'Merienda One', cursive;
+}
+.modal-footer{
+    padding: 0;
+    padding-top: 1rem;
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 5px 10px rgb(53, 68, 119);
+  transform: translateY(-0.25em);
+}
+/* card*/
+.cards-list {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+  .card .card_image {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+  }
+  
+  .card .card_image img {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+    object-fit: cover;
+  }
+  
+  .card .card_title {
+    text-align: center;
+    
+
+    margin-top: -80px;
+    height: 40px;
+    color: #fff;
+  }
+  
+  .card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }
+  
+  .title-white {
+    color: white;
+  }
+  
+  .title-black {
+    color: black;
+  }
+  
+  @media all and (max-width: 500px) {
+    .card-list {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+    }
+  }
+  
+  .card_title{
+      background-color: rgb(30, 30, 77);
+  }

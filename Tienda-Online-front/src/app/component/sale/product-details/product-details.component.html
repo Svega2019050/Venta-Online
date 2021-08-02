@@ -13,16 +13,17 @@
     <div class="product-details">
             
         <h1 class="text-color title">{{product.name}}</h1><br>
+        
         <p>{{product.description}}</p>
         <h1 class="text-color">Precio: ${{product.price}} </h1>
 
         <div class="footer-product text-center">
-            <div class="row">
+            <div class="row text-center">
                 <div class="col" routerLink='/modoPago'>
                     <a  data-toggle="modal"  data-target="#actualizarModal" (click)="obtenerData(product)"><i class="fas fa-cash-register"></i> Comprar</a>
                 </div>
-                <div class="col">
-                    <a  data-toggle="modal" data-target="#removeModal"><i class="fas fa-cart-plus"></i> Añadir</a>
+                <div class="col" (click)="saveCart()">
+                    <a  data-toggle="modal"   data-target="#removeModal"><i class="fas fa-cart-plus"></i> Añadir</a>
                 </div>
             </div> 
         </div>         

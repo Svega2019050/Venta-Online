@@ -7,6 +7,8 @@
 }
 .row{
     align-items: center;
+    margin-right: 0;
+    text-align: center;
 }
 .col{
     background: rgb(121, 179, 215);
@@ -72,7 +74,8 @@ img{
 }
 .card-title{
     font-family: 'Merienda One', cursive;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    text-transform: capitalize;
 }
 
 .button{

@@ -6,8 +6,8 @@ const mdAuth = require('../middlewares/authenticated');
 
 var api = express.Router();
 
-api.get('/', [mdAuth.ensureAuth], cartController.getCart);
+api.get('/getCart', [mdAuth.ensureAuth], cartController.getCart);
 api.post('/buy', [mdAuth.ensureAuth], cartController.buyCart);
-api.post('/:productId', [mdAuth.ensureAuth], cartController.addProduct);
+api.post('/addProduct/:productId', [mdAuth.ensureAuth], cartController.addProduct);
 
 module.exports = api;

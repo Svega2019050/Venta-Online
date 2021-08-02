@@ -6,6 +6,6 @@ const mdAuth = require('../middlewares/authenticated');
 
 var api = express.Router();
 
-api.get('/', [mdAuth.ensureAuth], invoiceController.getInvoices);
+api.get('/getInvoices', [mdAuth.ensureAuth], invoiceController.getInvoices);
 
 module.exports = api;

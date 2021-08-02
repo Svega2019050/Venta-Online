@@ -1,0 +1,40 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
+
+
+
+.card{
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgb(250, 250, 250);
+    box-shadow: 0.5rem 0.5rem rgba(60, 80, 103, 0.65);
+    display: inline-block;
+}
+
+
+/* card*/
+
+  
+  .card {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+.h2-details{
+    margin-top: 4rem;
+    font-size: 1.5rem;
+}
+
+.text-center{
+    text-transform: uppercase;
+    color: #fff;
+    background-color: rgb(58, 58, 58);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}

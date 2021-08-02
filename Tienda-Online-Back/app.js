@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 app.use('/api',userRoute);
 app.use('/api',CategoryRoute);
 app.use('/api',productRoute);
-app.use('/api/cart', cartRoute)
-app.use('/api/invoice', invoiceRoute)
+app.use('/api',cartRoute);
+app.use('/api',invoiceRoute);
 
 
 module.exports = app;

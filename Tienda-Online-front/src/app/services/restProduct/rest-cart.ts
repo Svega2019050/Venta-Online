@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RestUserService } from '../restUser/rest-user.service';
+import { Injectable } from '@angular/core';
 import { CONNECTION } from '../global.service';
+import { RestUserService } from '../restUser/rest-user.service';
+import { RestCategoryService } from '../restCategory/rest-category.service';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestCategoryService {
+export class RestCart{
   public uri;
   public token;
   public user;
 
-  constructor(private http:HttpClient, private restUser:RestUserService) { 
+  constructor(private http:HttpClient, private restUser:RestUserService, private restCategory: RestCategoryService) { 
     this.uri = CONNECTION.URI;
   }
 
@@ -37,49 +38,31 @@ export class RestCategoryService {
     return this.token;
   }
 
-
-  /* Category Crud */
-  saveCategory(idUser, category){
+  addCart(idProduct){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    let params = JSON.stringify(category);
-    return this.http.put(this.uri+idUser+'/saveCategory', params,{headers:headers} )
+    return this.http.post(this.uri+'addProduct/'+idProduct._id, null,{headers:headers} )
     .pipe(map(this.extractData))
   }
-
-  updateCategory(idUser, Category){
+  
+  getCarts(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    let params = JSON.stringify(Category)
-    return this.http.put(this.uri+idUser+'/updateCategory/'+Category._id,params, {headers:headers})
+    return this.http.get(this.uri+'getCart',{headers:headers})
     .pipe(map(this.extractData))
   }
-
-  removeCategory(idUser, idCategory){
+  getInvoices(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.restUser.getToken()
     })
-    return this.http.put(this.uri+idUser+'/deleteCategory/'+idCategory._id, null,{headers:headers})
+    return this.http.get(this.uri+'getInvoices',{headers:headers})
     .pipe(map(this.extractData))
   }
 
-  getCategorys(){
-
-    return this.http.get(this.uri+'getCategory')
-    .pipe(map(this.extractData))
-  }
-
-  getCategoryId(idUser,idCategory){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.restUser.getToken()
-    })
-    return this.http.get(this.uri+idUser+'/getTorneoId/'+idCategory._id, {headers:headers})
-    .pipe(map(this.extractData))
-  }
+  
 }

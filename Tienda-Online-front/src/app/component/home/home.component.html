@@ -1,3 +1,38 @@
+<div class=" rounded container p-3 my-3 border">
+    <h1 class="texto-Principal" *ngIf="token == null">Bienvenidos</h1>
+    
+    <div class="cards-list">
+  
+      <div class="card 3" routerLink="/home" routerLinkActivate="active" *ngIf="token == null">
+        <div class="card_image">
+          <img src="https://vljrealtors.in/wp-content/uploads/2018/05/Real-estate-agent-kolkata-1170x0-c-center.png" />
+        </div>
+        <div class="card_title text-inicio">
+          <p class="text-inicio">Inicio</p>
+        </div>
+      </div>
+        
+      <div class="card 1" routerLink="/register" routerLinkActivate="active" *ngIf="token == null">
+        <div class="card_image"> <img src="../../../assets/img/register.png" /> </div>
+        <div class="card_title title-white">
+          <p>Registrarse</p> 
+        </div>
+      </div>
+      
+      <div class="card 2" routerLink="/login" routerLinkActivate="active" *ngIf="token == null">
+        <div class="card_image">
+          <img src="https://aydai.com/wp-content/uploads/2020/11/tienda-online-ERP-ventas.jpg" />
+          </div>
+        <div class="card_title title-white">
+          <p>Iniciar sesión</p>     
+        </div>
+      </div>
+      
+    </div>
+        
+  
+  </div>
+
 <div *ngIf="token != null || token != undefined">
     <h1 class="texto-Principal">Productos Por Categoría</h1><br>
 

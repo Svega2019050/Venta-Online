@@ -1,7 +1,4 @@
-import { Component, OnInit,DoCheck } from '@angular/core';
-import { Cart } from 'src/app/models/cart';
-import { Category } from 'src/app/models/category';
-import { Product } from 'src/app/models/product';
+import { Component, OnInit } from '@angular/core';
 import { CONNECTION } from 'src/app/services/global.service';
 import { RestCart} from 'src/app/services/restProduct/rest-cart';
 import { RestCategoryService } from 'src/app/services/restCategory/rest-category.service';
@@ -11,13 +8,13 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-detalles',
+  templateUrl: './detalles.component.html',
+  styleUrls: ['./detalles.component.css']
 })
-export class CartComponent implements OnInit,DoCheck {
-  cartSelect: Cart;
-  carts:[]; 
+export class DetallesComponent implements OnInit {
+
+  details:[]; 
   cart;
 
   message;
@@ -34,17 +31,17 @@ export class CartComponent implements OnInit,DoCheck {
 
   ngOnInit(): void {
 
-    this.listCarts()
+    this.listInvoices()
   }
   ngDoCheck(){
     this.token = this.restUser.getToken();
     this.user = this.restUser.getUser();
   }
 
-  listCarts(){
-    this.restCart.getCarts().subscribe((res:any)=>{
+  listInvoices(){
+    this.restCart.getInvoices().subscribe((res:any)=>{
       if (res.carts) {
-        this.carts = res.carts;
+        this.details = res.details;
 
       }else{
         //alert(this.message)
@@ -52,15 +49,11 @@ export class CartComponent implements OnInit,DoCheck {
       }
     },error =>{
       if (error.status == 404  ) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Lo sentimos...',
-          text: 'No tiene productos en el carrito'        
-        })
-        this.route.navigateByUrl('home');
+      
       }
       
     })
     
   }
+
 }

@@ -14,6 +14,7 @@ import { SearchProductPipe } from '../../../pipes/searchProduct.pipe';
 })
 export class ProductComponent implements OnInit,DoCheck {
   productoSelect: Product;
+  public productoSelectNew: Product;
   products:[]; 
   product; 
   category
@@ -27,11 +28,11 @@ export class ProductComponent implements OnInit,DoCheck {
   constructor(private restUser:RestUserService,
     private restCategory:RestCategoryService,private restProduct: RestProductService) {
     this.productoSelect = new Product('','','','','','');
+    this.productoSelectNew = new Product('','','','','','');
     this.uri = CONNECTION.URI;
   }
 
   ngOnInit(): void {
-    this.productoSelect = new Product('','','','','','');
     this.user = JSON.parse(localStorage.getItem('user'));
     this.category = JSON.parse(localStorage.getItem('categorySelect'));
     this.listProducts();
@@ -60,12 +61,18 @@ export class ProductComponent implements OnInit,DoCheck {
 
   saveProduct(){
     let category = localStorage.getItem('categorySelect');
-    this.restProduct.saveProduct( this.productoSelect,category).subscribe((res:any)=>{
+    this.restProduct.saveProduct( this.productoSelectNew,category).subscribe((res:any)=>{
       if (res.productPush) {
-        alert(res.message)
+        Swal.fire({       
+          icon: 'success',
+          title: 'Producto Creado Correctamente',
+          showConfirmButton: false,
+          timer: 1500,         
+        });  
         this.category = res.productPush
         localStorage.setItem('category', JSON.stringify(this.category))
         this.listProducts();
+        localStorage.removeItem('category');
       } else {
         Swal.fire({       
           icon: 'success',
@@ -122,7 +129,7 @@ export class ProductComponent implements OnInit,DoCheck {
           showConfirmButton: false,
           timer: 1500,         
         });  
-        
+        localStorage.removeItem('category');
       } else {
         console.log(this.productoSelect)
       }
@@ -135,7 +142,7 @@ export class ProductComponent implements OnInit,DoCheck {
         })
       }
     })
-  
+    
   }
 
   

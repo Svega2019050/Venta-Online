@@ -5,6 +5,7 @@ import { Category } from '../../../models/category';
 import {RestCategoryService} from '../../../services/restCategory/rest-category.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-categry',
   templateUrl: './categry.component.html',
@@ -14,6 +15,8 @@ export class CategryComponent implements OnInit,DoCheck {
   categorys:[];
   categorySelect: Category;
   categoryNew: Category;
+
+  carts:[]; 
   category;
   message;
   token;
@@ -21,7 +24,7 @@ export class CategryComponent implements OnInit,DoCheck {
   uri;
 
   constructor(private restUser:RestUserService,
-    private restCategory:RestCategoryService, ) { 
+    private restCategory:RestCategoryService) { 
       this.categorySelect = new Category('','','','',[]);
       this.uri = CONNECTION.URI;
       
@@ -120,7 +123,7 @@ export class CategryComponent implements OnInit,DoCheck {
       }
       this.listCategories();
     })
-    this.listCategories();
+    
   }
 
 

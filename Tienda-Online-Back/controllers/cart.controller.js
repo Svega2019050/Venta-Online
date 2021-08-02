@@ -109,7 +109,7 @@ async function getCart(req, res) {
         .send({ message: 'Aún no ha añadido items a su carrito' });
     }
 
-    return res.status(200).send(cart);
+    return res.send(cart);
   } catch (err) {
     return res.status(500).send({ error: err.message });
   }

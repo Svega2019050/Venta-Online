@@ -27,6 +27,8 @@ import { SearchPipe } from './pipes/search.pipe';
 import { SearchCategoryPipe } from './pipes/searchCategorypipe ';
 import { SearchProductPipe } from './pipes/searchProduct.pipe';
 import { ModoPagoComponent } from './component/sale/modo-pago/modo-pago.component';
+import { RestCart } from './services/restProduct/rest-cart';
+import { DetallesComponent } from './component/sale/detalles/detalles.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { ModoPagoComponent } from './component/sale/modo-pago/modo-pago.componen
     SearchPipe,
     SearchCategoryPipe,
     SearchProductPipe,
-    ModoPagoComponent
+    ModoPagoComponent,
+    DetallesComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { ModoPagoComponent } from './component/sale/modo-pago/modo-pago.componen
     FormsModule,
     HttpClientModule
   ],
-  providers: [RestUserService,UploadUserService],
+  providers: [RestUserService,UploadUserService,RestCart],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

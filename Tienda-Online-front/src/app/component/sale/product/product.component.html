@@ -33,7 +33,7 @@
 
 
     <!-- Products -->
-    <div class="card" style="width: 18rem;" *ngFor="let product of products | searchP:searchP">
+    <div class="card" style="width: 22rem;" *ngFor="let product of products | searchP:searchP">
         <img src="../../../../assets/img/Icon.png" class="card-img-top" alt="product">
         <div class="card-body  text-center">
             <h4 class="card-title">{{product.name}}</h4>
@@ -71,19 +71,19 @@
             <form  #SaveProduct="ngForm">
                 <div class="mb-3 text-color">
                     <label for="inputname" class="form-label"> Nombre Producto</label>
-                    <input  [(ngModel)]="productoSelect.name" name="name" type="text" class="form-control" id="inputname" placeholder="Nombre Producto" required>
+                    <input  [(ngModel)]="productoSelectNew.name" name="name" type="text" class="form-control" id="inputname" placeholder="Nombre Producto" required>
                 </div>
                 <div class="mb-3 text-color">
                     <label for="inputprice" class="form-label"> Precio</label>
-                    <input  [(ngModel)]="productoSelect.price" name="price" type="text" class="form-control" id="inputprice" placeholder="$ Precio" required>
+                    <input  [(ngModel)]="productoSelectNew.price" name="price" type="text" class="form-control" id="inputprice" placeholder="$ Precio" required>
                 </div>
                 <div class="mb-3 text-color">
                     <label for="inputstock" class="form-label"> Cantidad</label>
-                    <input  [(ngModel)]="productoSelect.stock" name="stock" type="text" class="form-control" id="inputstock" placeholder="Cantidad" required>
+                    <input  [(ngModel)]="productoSelectNew.stock" name="stock" type="text" class="form-control" id="inputstock" placeholder="Cantidad" required>
                 </div>
                 <div class="mb-3 text-color">
                     <label for="Descriptioninput" class="form-label"> Descripción</label>
-                    <textarea [(ngModel)]="productoSelect.description" #description="ngModel" name="description" type="text" class="form-control" id="Descriptioninput"  placeholder="Descripción" cols="10" rows="5"></textarea>
+                    <textarea [(ngModel)]="productoSelectNew.description" #description="ngModel" name="description" type="text" class="form-control" id="Descriptioninput"  placeholder="Descripción" cols="10" rows="5"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
