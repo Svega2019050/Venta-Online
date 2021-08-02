@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var userRoute = require('./routes/user.route');
 var CategoryRoute = require('./routes/category.route');
 var productRoute = require('./routes/product-routes');
+var cartRoute = require('./routes/cart.route');
+var invoiceRoute = require('./routes/invoice.route');
 
 
 var app = express();
@@ -23,6 +25,8 @@ app.use((req, res, next) => {
 app.use('/api',userRoute);
 app.use('/api',CategoryRoute);
 app.use('/api',productRoute);
+app.use('/api/cart', cartRoute)
+app.use('/api/invoice', invoiceRoute)
 
 
 module.exports = app;
